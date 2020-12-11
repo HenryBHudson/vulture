@@ -22,5 +22,5 @@ Email » **hhdemo@gmail.com**
 Password » **DemoHH12**
 
 ## Code and Files
-This will be coming soon. 
+Coming soon.
 
