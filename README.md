@@ -3,8 +3,9 @@
 
 ## What is it?
 Vulture is a project management tool focused on development teams. It's my first web application and is built with:
-Frontend | Backend
+Client-Side | Server-Side
 -------- | -------
-PUG | NodeJS
-CSS | Express
-Javascript | MongoDB
+CSS | NodeJS
+Javascript | Express
+-| MongoDB
+-| Pug
