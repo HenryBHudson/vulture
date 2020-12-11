@@ -9,3 +9,10 @@ CSS | NodeJS
 Javascript | Express
 -| MongoDB
 -| Pug
+
+## Demo Account
+Use the following credentials to access a demo account:
+
+Email » **hhdemo@gmail.com**
+
+Password » **DemoHH12**
