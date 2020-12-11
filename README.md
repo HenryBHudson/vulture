@@ -3,7 +3,7 @@
 
 **Status:** 
 
-![0%](https://progress-bar.dev/0)
+![10%](https://progress-bar.dev/10)
 
 ## What is it?
 Vulture is a project management tool focused on development teams. It's my first web application and is built with:
