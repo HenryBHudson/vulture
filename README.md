@@ -1,6 +1,9 @@
 # Vulture
 *Started production 1st November 2020.*
-**Status: ** ![60%](https://progress-bar.dev/60)
+
+**Status:** 
+
+![60%](https://progress-bar.dev/60)
 
 ## What is it?
 Vulture is a project management tool focused on development teams. It's my first web application and is built with:
