@@ -17,9 +17,9 @@ Javascript | Express
 ## Demo Account
 Use the following credentials to access a demo account:
 
-Email » **hhdemo@gmail.com**
+Email » **Coming Soon**
 
-Password » **DemoHH12**
+Password » **Coming Soon**
 
 ## Code and Files
 Coming soon.
