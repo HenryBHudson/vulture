@@ -11,8 +11,8 @@ Client-Side | Server-Side
 -------- | -------
 CSS | NodeJS
 Javascript | Express
--| MongoDB
--| Pug
+⠀| MongoDB
+⠀| Pug
 
 ## Demo Account
 Use the following credentials to access a demo account:
