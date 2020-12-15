@@ -13,6 +13,7 @@ CSS | NodeJS
 Javascript | Express
 ⠀| MongoDB
 ⠀| Pug
+⠀| Mongoose
 
 ## Demo Account
 Use the following credentials to access a demo account:
