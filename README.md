@@ -1,5 +1,5 @@
 # Vulture
-*Started production 1st November 2020.*
+*Started development 1st November 2020.*
 
 **Status:** 
 
