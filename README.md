@@ -19,6 +19,13 @@ Javascript | Express
 ⠀| Pug
 ⠀| Mongoose
 
+## Framework and API
+#### Framework
+The backend of Vulture uses the MVC framework. I chose this because it effectively structures the managing of data, presentation and responses of the web application.
+
+#### API
+A RESTful API has been implemented as it provides flexibility for the server in terms of modifying data and is very effective when scaling software due to the astronomical amount of requests which can be sent at a time from different devices.
+
 ## Demo Account
 Use the following credentials to access a demo account:
 
@@ -28,4 +35,5 @@ Password » **Coming Soon**
 
 ## Code and Files
 Coming soon.
+
 
