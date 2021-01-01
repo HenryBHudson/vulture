@@ -26,6 +26,9 @@ The backend of Vulture uses the MVC framework. I chose this because it effective
 #### API
 A RESTful API has been implemented as it provides flexibility for the server in terms of modifying data and is very effective when scaling software due to the astronomical amount of requests which can be sent at a time from different devices.
 
+## Client Side
+I use Pug for server-side rendering, which sends formatted HTML to the client. I use pure JS for my pages.
+
 ## Demo Account
 Use the following credentials to access a demo account:
 
