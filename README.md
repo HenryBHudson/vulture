@@ -3,7 +3,7 @@
 
 **Status:** 
 
-![60%](https://progress-bar.dev/60)
+![65%](https://progress-bar.dev/65)
 
 **Estimated Release Date:**
 
