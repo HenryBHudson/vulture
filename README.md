@@ -6,7 +6,7 @@
 
 **Estimated Release Date:**
 
-February 1st 2021
+January 20th 2021
 
 ## What is it?
 Vulture is a project management tool focused on development teams. It's my first web application and is built with:
