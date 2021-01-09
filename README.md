@@ -1,5 +1,4 @@
 # Vulture
-*Started development 1st November 2020.*
 
 **Status:** 
 
