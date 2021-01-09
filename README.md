@@ -1,6 +1,6 @@
 # Vulture
 
-**Status:** 
+**Completion Status:** 
 
 ![75%](https://progress-bar.dev/75)
 
