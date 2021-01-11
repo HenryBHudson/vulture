@@ -9,7 +9,9 @@
 January 20th 2021
 
 ## What is it?
-Vulture is a project management tool focused on development teams. It's my first web application and is built with:
+Vulture is a project management tool focused on development teams. It includes a simple to use kanban board along with a page to view project statistics on graphs. Management sections for users with access roles of Admin or above are there to use to manage members and update project settings.
+
+Vulture is built with:
 Client-Side | Server-Side
 -------- | -------
 CSS | NodeJS
