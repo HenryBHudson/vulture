@@ -25,7 +25,7 @@ Javascript | Express
 The backend of Vulture uses the MVC framework. I chose this because it effectively structures the managing of data, presentation and responses of the web application.
 
 #### API
-A RESTful API has been implemented as it provides flexibility for the server in terms of modifying data and is very effective when scaling software due to the astronomical amount of requests which can be sent at a time from different devices.
+A RESTful API has been implemented as it provides flexibility for the server in terms of modifying data and is very effective when scaling software due to the large amount of requests which can be sent at a time from different devices.
 
 ## Client Side
 I use Pug for server-side rendering, which sends formatted HTML to the client. I use pure JS for my pages.
