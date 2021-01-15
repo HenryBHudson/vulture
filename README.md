@@ -6,7 +6,7 @@
 
 **Estimated Release Date:**
 
-January 21st 2021
+February 21st 2021
 
 ## What is it?
 Vulture is a project management tool focused on development teams. It includes a simple to use kanban board along with a page to view project statistics on graphs. Management sections for users with access roles of Admin or above are there to use to manage members and update project settings.
