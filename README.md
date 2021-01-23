@@ -2,7 +2,7 @@
 
 **Completion Status:** 
 
-![72%](https://progress-bar.dev/72)
+![75%](https://progress-bar.dev/75)
 
 **Estimated Release Date:**
 
@@ -38,6 +38,6 @@ Email » **Coming Soon**
 Password » **Coming Soon**
 
 ## Code and Files
-Coming soon.
+Vulture is likely to be open source in the future.
 
 
