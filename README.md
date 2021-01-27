@@ -2,7 +2,7 @@
 
 **Completion Status:** 
 
-![80%](https://progress-bar.dev/80)
+![85%](https://progress-bar.dev/85)
 
 **Estimated Release Date:**
 
