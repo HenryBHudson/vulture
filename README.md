@@ -9,7 +9,11 @@
 **Recent Activity**
 
 ```diff
+# 30th Jan
 + Added Flags
+
+# 29th Jan
++ Added Dark Mode
 ```
 
 **Estimated Release Date:**
