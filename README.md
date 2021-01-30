@@ -8,7 +8,10 @@
 
 **Recent Activity**
 
-![#f03c15] Flags added.
+```diff
+#Added
+```
+Flags
 
 **Estimated Release Date:**
 
