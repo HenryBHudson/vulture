@@ -9,7 +9,7 @@
 **Recent Activity**
 
 ```diff
-#Added
+- Added
 ```
 Flags
 
