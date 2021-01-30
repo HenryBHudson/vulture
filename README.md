@@ -9,9 +9,8 @@
 **Recent Activity**
 
 ```diff
-- Added
++ Added Flags
 ```
-Flags
 
 **Estimated Release Date:**
 
