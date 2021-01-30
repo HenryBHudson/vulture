@@ -6,9 +6,9 @@
 
 ![85%](https://progress-bar.dev/85) 
 
-**Most Recent**
+**Recent Activity**
 
-Flags added.
+![#f03c15] Flags added.
 
 **Estimated Release Date:**
 
