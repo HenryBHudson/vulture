@@ -28,9 +28,10 @@ Client-Side | Server-Side
 -------- | -------
 CSS | NodeJS
 Javascript | Express
-Socket.IO⠀| MongoDB
+⠀| MongoDB
 ⠀| Pug
 ⠀| Mongoose
+Socket.IO | Socket.IO
 
 ## Framework and API
 #### Framework
