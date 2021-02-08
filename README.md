@@ -24,14 +24,13 @@ February 21st 2021
 Vulture is a project management tool focused on development teams. It includes a simple to use kanban board along with a page to view project statistics on graphs. Management sections for users with access roles of Admin or above are available to use to manage members and update project settings.
 
 Vulture is built with:
-Client-Side | Server-Side
--------- | -------
-CSS | NodeJS
-Javascript | Express
-⠀| MongoDB
-⠀| Pug
-⠀| Mongoose
-Socket.IO | Socket.IO
+Client-Side | Server-Side | Socket
+-------- | ------- | -------
+CSS | NodeJS | Socket.IO
+Javascript | Express |
+⠀| MongoDB |
+⠀| Pug |
+⠀| Mongoose |
 
 ## Framework and API
 #### Framework
