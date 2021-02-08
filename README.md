@@ -28,7 +28,7 @@ Client-Side | Server-Side
 -------- | -------
 CSS | NodeJS
 Javascript | Express
-Socket.io⠀| MongoDB
+Socket.IO⠀| MongoDB
 ⠀| Pug
 ⠀| Mongoose
 
