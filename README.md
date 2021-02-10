@@ -9,6 +9,9 @@
 **Recent Activity**
 
 ```diff
+# In Progress
+! Chat System
+
 # 30th Jan
 + Added Flags
 
