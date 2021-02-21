@@ -21,7 +21,7 @@
 
 **Estimated Release Date:**
 
-[!] **Project Delayed**
+⚠ **Project Delayed**
 
 April 2020
 
