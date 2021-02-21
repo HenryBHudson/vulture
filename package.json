@@ -13,7 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "@babel/polyfill": "^7.12.1",
-    "@jaames/iro": "^5.3.1",
+    "@jaames/iro": "^5.3.2",
     "@shopify/draggable": "^1.0.0-beta.8",
     "axios": "^0.21.1",
     "bcryptjs": "^2.4.3",
@@ -24,25 +24,25 @@
     "iptables": "0.0.4",
     "jsonwebtoken": "^8.5.1",
     "moment": "^2.29.1",
-    "mongoose": "^5.9.21",
+    "mongoose": "^5.11.17",
     "morgan": "^1.10.0",
-    "nodemailer": "^6.4.16",
-    "nodemon": "^2.0.6",
+    "nodemailer": "^6.4.18",
+    "nodemon": "^2.0.7",
     "parcel-bundler": "^1.12.4",
     "pug": "^3.0.0",
-    "slugify": "^1.4.4",
+    "slugify": "^1.4.7",
     "socket.io": "^3.1.1",
     "spectrum-colorpicker2": "^2.0.5"
   },
   "devDependencies": {
-    "eslint": "^7.3.1",
+    "eslint": "^7.20.0",
     "eslint-config-airbnb": "^18.2.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-import": "^2.22.0",
     "eslint-plugin-jsx-a11y": "^6.3.1",
     "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-prettier": "^3.1.4",
-    "eslint-plugin-react": "^7.20.3",
+    "eslint-plugin-prettier": "^3.3.1",
+    "eslint-plugin-react": "^7.22.0",
     "prettier": "^2.0.5"
   }
 }
