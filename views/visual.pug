@@ -1,0 +1,351 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  link(rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css' integrity='sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm' crossorigin='anonymous')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  script(src='https://cdn.jsdelivr.net/npm/chart.js@2.8.0')
+  link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.css')
+  script(src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.bundle.js')
+  link(rel='stylesheet' href='css/main.css')
+  link(rel='shortcut icon' type='image/png' href='img/favicon.png')
+  title Visual | #{project.name}
+  link(rel="stylesheet", href="css/fa.css")
+  script(src="https://cdn.jsdelivr.net/npm/@jaames/iro@5")
+  script.
+    var mode = localStorage.getItem('mode');
+
+    if(mode === "Dark"){
+      document.documentElement.setAttribute('data-theme', 'dark');
+    } else {
+      document.documentElement.setAttribute('data-theme', 'light');
+    }
+    
+.control-menu
+  img.control-logo(src='img/grey-icon.png' alt='Vulture Grey Icon')
+  .control-top
+    div
+      a(href="/projects")
+        i.fa.fa-bookmark
+  .control-bottom
+    div
+      a(href="/account")
+        i.fa.fa-cog
+.subset-menu
+  .subset-proj-header
+    .proj-img
+    .proj-text
+      .proj-text--title #{project.name}
+      .proj-text--subtitle #{project.type}
+    .proj-arrow
+      .fas.fa-chevron-down
+  hr.subset
+  .below-sb-hr
+    .proj-dropdown
+      for proj in uprojects
+        if proj.code != user.groupcode
+          .proj-item
+            .proj-img(style="background-image: url('../img/project2.png')")
+            .proj-text
+              .proj-text--title= proj.name
+              .proj-text--subtitle= proj.type
+              .proj-text--code= proj.code
+    .subset-list
+      a.subset-item(href="/overview")
+        i.fa.fa-columns.fa-fw
+        span.subset-item-text Board
+      .subset-item.subset-active
+        i.fas.fa-chart-bar.fa-fw  
+        span.subset-item-text Visual
+      a.subset-item(href="/markers")
+        i.fas.fa-poll-h.fa-fw
+        span.subset-item-text Markers
+      if user.role === 'Admin' || user.role === 'Manager'
+        hr
+        a.subset-item(href="/members")
+          i.fas.fa-users.fa-fw
+          span.subset-item-text Members
+
+        a.subset-item(href="/settings")
+          i.fa.fa-cog.fa-fw
+          span.subset-item-text Settings
+      hr
+      .subset-item#logout
+        i.fa.fa-arrow-to-left.fa-fw
+        span.subset-item-text Log Out
+  .subset-profile
+    .sp-left
+      .sp-picture
+    .sp-right
+      .sp-name
+        | #{user.name}
+      - roleClass = 'role-text role-'+user.role
+      .sp-role(class=roleClass)
+        | #{user.role}
+.main-body
+  .board-header
+    .board-title
+      i.fad.fa-chart-bar.fa-fw.grey-p10.grey-i
+      |  Visual
+      span.groupcode
+        span.code
+          span.grey-code Project Code
+          | #{project.code}
+  .sub-main-body
+    if cards.length > 2
+      .visual-container
+        .visual
+          .vc.visual-container-1
+            .visual-title
+              i.far.fa-clipboard.grey-i
+              span.v1-r Ticket Status
+            .visual-graph
+              .visual-graph-sub
+                canvas#ticketsChart(width='100' height='100')
+            br
+          .vc.visual-container-2
+            .visual-title.no-center
+              i.far.fa-map.grey-i
+              span.v1-r Tickets Created
+            .visual-graph
+              .visual-graph-sub.up
+                canvas#createdChart(width='100' height='35')
+    if cards.length < 3
+      .no-data-td
+        .nd
+          img(src='../img/nodata.svg' width='400')
+          .nd-title
+            | Looks like we couldn&apos;t find anything.
+          button.nd-cta(onClick="modalUpdateOpen('Pending');" data-toggle="modal" data-target="#createTicketModal")
+            | Create a ticket
+#createTicketModal.modal.fade(tabindex='-1' role='dialog' aria-labelledby='createTicketModalTitle' aria-hidden='true')
+  .modal-dialog.modal-dialog-centered(role='document')
+    .modal-content
+      .modal-header
+        h5#exampleModalLongTitle.modal-title New Ticket
+          .bcrumb.fas.fa-caret-right
+          span.cTmodal-location
+        button.close(type='button' data-dismiss='modal' aria-label='Close')
+          span(aria-hidden='true') &times;
+      .modal-body
+        form.form--newTicket
+          .form__group
+            label.form__label(for='summary')
+              | Summary
+              span.required *
+            input#summary.form__input(placeholder='e.g. unhandled error when logging out' required)
+          .form__group
+            label.form__label(for='description') Description
+            textarea#description.textarea
+          .form__group
+            label.form__label
+              | Urgency
+              span.required *
+            br
+            .option-wrap
+              .urgency-flex
+                .urgency-text.critical
+                  i.fas.fa-angle-double-up
+                  | &nbsp;&nbsp;Critical
+                .urgency-text.high
+                  i.fas.fa-angle-up
+                  | &nbsp;&nbsp;High
+                .urgency-text.medium.ur-active
+                  i.fas.fa-equals
+                  | &nbsp;&nbsp;Medium
+                .urgency-text.low
+                  i.fas.fa-minus
+                  | &nbsp;&nbsp;Low
+          .form__group
+            label.form__label Markers
+            br
+            .marker-form-wrap.tags-boxes-wrap
+              for tag in project.tags
+                .checkbox-separator
+                  input.tag-input.no-input-animation(type='checkbox' name=`${tag.text}-tag` value=`${tag.text}`)
+                  label.tag(for=`${tag.text}-tag`)
+                    .marker(style=`background-color: rgba(${tag.colour},0.2);color: rgb(${tag.colour})`)
+                      .marker-circle(style=`background-color: rgb(${tag.colour})`)
+                      .marker-content.tag-label-content= tag.text
+              
+          
+          .modal-footer
+            button.btn.btn-secondary(type='button' data-dismiss='modal') Close
+            button.btn.btn-primary(type='submit') Open ticket
+#markersModal.modal.fade(tabindex='-1' role='dialog' aria-labelledby='markersModal' aria-hidden='true')
+  .modal-dialog.modal-dialog-centered(role='document')
+    .modal-content
+      .modal-header
+        h5#exampleModalLongTitle.modal-title
+          i.fas.fa-poll-h.fa-fw
+          | &nbsp;Markers
+        button.close(type='button' data-dismiss='modal' aria-label='Close')
+          span(aria-hidden='true') &times;
+      .modal-body
+        .marker-form-wrap
+          for tag in project.tags
+              .remove-item-container
+                span.remove &times;
+                .marker(style=`background-color: rgba(${tag.colour},0.2);color: rgb(${tag.colour})`)
+                  .marker-circle(style=`background-color: rgb(${tag.colour})`)
+                  .marker-content= tag.text
+        hr.slim
+        label.markerColor(for='markerColor')
+          | Create Marker
+          br
+        form.form--newMarker
+          .marker-options
+            .marker-options-left
+              input#markerPreviewInput.form__input.mt-0(type='text' required)
+              br
+              .mol-container
+                #marker-preview.marker.no-grow(style=`background-color: rgba(70, 73, 160, 0.2);color: rgb(70, 73, 160)`)
+                      #marker-preview-circle.marker-circle(style=`background-color: rgb(70, 73, 160)`)
+                      #marker-preview-content.marker-content Preview
+            .marker-options-right
+              #marker-colour
+          .modal-footer
+            button.btn.btn-secondary(type='button' data-dismiss='modal') Close
+            button.btn.btn-primary(type='submit') Save changes
+script(src='http://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js' type='text/javascript')
+script(src='js/response.js')
+script(src='js/bundle.js')
+script(src='https://code.jquery.com/jquery-3.2.1.slim.min.js' integrity='sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN' crossorigin='anonymous')
+script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js' integrity='sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q' crossorigin='anonymous')
+script(src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js' integrity='sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl' crossorigin='anonymous')
+script.
+    ctx = document.getElementById('ticketsChart');
+    ctx2 = document.getElementById('createdChart').getContext('2d');
+
+    gradientRed = ctx.getContext('2d').createLinearGradient(0, 0, 200, 200);
+    gradientRed.addColorStop(0, 'rgba(255, 85, 184, 0.9)');
+    gradientRed.addColorStop(1, 'rgba(255, 135, 135, 0.8)');
+
+    gradientBlue = ctx.getContext('2d').createLinearGradient(0, 0, 350, 350);
+    gradientBlue.addColorStop(0, 'rgba(90, 50, 255, 0.9)');
+    gradientBlue.addColorStop(1, 'rgba(130, 135, 255, 0.8)');
+
+    gradientGreen = ctx.getContext('2d').createLinearGradient(0, 0, 350, 350);
+    gradientGreen.addColorStop(0, 'rgba(90, 255, 255, 0.9)');
+    gradientGreen.addColorStop(1, 'rgba(80, 180, 255, 0.8)');
+
+    gradientPink = ctx.getContext('2d').createLinearGradient(0, 0, 350, 350);
+    gradientPink.addColorStop(0, 'rgba(255, 50, 255, 0.9)');
+    gradientPink.addColorStop(1, 'rgba(255, 100, 255, 0.5)');
+
+    var cards = JSON.parse("#{cards}".replace(/&quot;/g,'"'));
+    var statusData = [0,0,0,0];
+    var statusDict = {"pending": 0,"inprogress": 1,"issues": 2,"completed": 3}
+    for(const card in cards){
+        statusData[statusDict[cards[card]["panel"]]] += 1;
+    }
+
+    dn = new Chart(ctx, {
+        type: 'doughnut',
+         data: {
+            labels: ['Pending', 'In Progress', 'Issues', 'Completed'],
+            datasets: [{
+                data: statusData,
+                backgroundColor: [
+                    gradientPink,
+                    gradientBlue,
+                    gradientRed,
+                    gradientGreen
+                ],
+                borderWidth: 0
+            }]
+        },
+        options: {
+            legend: {
+                display: false
+            },
+            cutoutPercentage: 75
+        }
+    });
+
+
+    gradient = ctx2.createLinearGradient(0, 0, 0, 275);
+    gradient.addColorStop(0, 'rgba(107, 98, 255, 0.8)');   
+    gradient.addColorStop(1, 'rgba(107, 98, 255, 0)');
+
+
+    var lLabels = "#{project.created.date}".split(',');
+    var tempLabel = [];
+    var lineLabels = [];
+    for(const label in lLabels){
+      tempLabel = lLabels[label].split(' ');
+      tempLabel = [tempLabel[0], tempLabel[1]]
+      lineLabels.push(tempLabel.join(" "));
+    }
+    
+    var nums = "#{project.created.number}".split(',');
+    var lineNums = [];
+    nums.forEach(num => {
+        lineNums.push(parseInt(num));
+    })
+    if(lineLabels.length === 1){
+      lineLabels.unshift("Creation")
+      lineNums.unshift(0);
+    }
+    
+    mode = localStorage.getItem('mode');
+    var gridLns;
+    if(mode === 'Dark'){
+      gridLns = "rgba(255, 255, 255, 0.02)";
+    } else {
+      gridLns = "rgba(0, 0, 0, 0.02)";
+    }
+
+    data = {
+        labels : lineLabels,
+        datasets: [
+            {
+                backgroundColor : gradient,
+                strokeColor : "#ff6c23",
+                pointColor : "#fff",
+                pointStrokeColor : "#ff6c23",
+                pointHighlightFill: "#fff",
+                pointHighlightStroke: "#ff6c23",
+                data : lineNums,
+                pointRadius: 4
+            }
+        ]
+    };
+
+    options = {
+        legend: {
+                display: false
+        },
+        responsive: true,
+        datasetStrokeWidth : 1,
+        pointDotStrokeWidth : 4,
+        tooltipFillColor: "rgba(0,0,0,0.5)",
+        tooltipFontStyle: "bold",
+        scales: {
+            xAxes: [{
+                gridLines: {
+                    color: gridLns,
+                }
+            }],
+            yAxes: [{
+                gridLines: {
+                    color: gridLns,
+                },
+                ticks: {
+                    beginAtZero: true,
+                    stepSize: 1
+                }
+            }]
+        },
+        elements: {
+            line: {
+                tension: 0.3
+            }
+        }
+    };
+
+
+    line = new Chart(ctx2, {
+        type: 'line',
+        data,
+        options
+    })

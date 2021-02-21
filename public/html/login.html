@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://fonts.googleapis.com/css?family=Rubik' rel='stylesheet'>
+    <link rel="stylesheet" href="css/main.css">
+    <title>Login | Vulture</title>
+    <script src="https://kit.fontawesome.com/8ad34c9995.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="auth-bg"></div>
+    <div class="auth-wrap">
+        <div class="auth-bar"></div>
+        <div class="auth-body">
+            <div class="auth-title">
+                Log in to your Vulture account
+            </div>
+            <form>
+                <div class="form__group">
+                    <label class="form__label" for="email">Email address</label>
+                    <input class="form__input" id="email" type="email" placeholder="example@email.com" required>
+                </div>
+                <div class="form__group">
+                    <label class="form__label" for="pass">Password</label>
+                    <input class="form__input" id="pass" type="password" placeholder="••••••••" required minlength="8">
+                </div>
+                <div class="form__group form__last">
+                    <button class="form__btn">Log in</button>
+                </div>
+            </form>
+            <div class="auth-alt">Don't have an account yet?&nbsp;<a class="auth-alt-option">Register</a></div>
+        </div>
+    </div>
+</body>
+<script src="js/response.js"></script>
+</html>

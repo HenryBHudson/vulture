@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.bundle.js"></script>
+    <link rel="stylesheet" href="../css/main.css">
+    <title>Visual | Vulture</title>
+    <script src="https://kit.fontawesome.com/8ad34c9995.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="control-menu">
+        <img src="../img/grey-icon.png" alt="Vulture Grey Icon" class="control-logo">
+        <div class="control-top">
+            <div><a class=""><i class="fa fa-bookmark"></i></a></div>
+            <div><a class=""><i class="fa fa-plus"></i></a></div>
+            
+        </div>
+        <div class="control-bottom">
+            <div><a class=""><i class="fa fa-user"></i></a></div>
+            <div><a class=""><i class="fa fa-cog"></i></a></div>
+        </div>
+    </div>
+    <div class="subset-menu">
+        <div class="subset-proj-header">
+            <div class="proj-img"></div>
+            <div class="proj-text">
+                <div class="proj-text--title">Vulture</div>
+                <div class="proj-text--subtitle">Software Project</div>
+            </div>
+            
+        </div>
+        <div class="subset-list">
+            <div class="subset-item"><i class="fas fa-columns fa-fw"></i></i><span class="subset-item-text">Board</span></div>
+            <div class="subset-item" type="button" data-toggle="modal" data-target="#createTicketModal"><i class="far fa-plus-square fa-fw"></i><span class="subset-item-text">Create Ticket</span></div>
+            <div class="subset-item subset-active"><i class="fas fa-chart-bar fa-fw"></i><span class="subset-item-text">Visual</span></div>
+            <hr/>
+            <div class="subset-item"><i class="fas fa-users fa-fw"></i><span class="subset-item-text">Members</span></div>
+            <div class="subset-item" type="button" data-toggle="modal" data-target="#markersModal"><i class="fas fa-poll-h fa-fw"></i><span class="subset-item-text">Markers</span></div>
+            <div class="subset-item"><i class="fa fa-cog fa-fw"></i><span class="subset-item-text">Settings</span></div>
+            
+        </div>
+        <div class="subset-profile">
+            <div class="sp-left">
+                <div class="sp-picture">
+                    
+                </div>
+            </div>
+            <div class="sp-right">
+                <div class="sp-name">
+                    Henry Hudson
+                </div>
+                <div class="sp-role role-text role-Manager">
+                    Manager
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    <div class="main-body">
+        <div class="board-header">
+            <div class="board-title"><i class="fas fa-chart-bar fa-fw grey-i"></i> Visual</div> <!-- &nbsp;<span class="role-text role-manager">MANAGER</span> -->
+        </div>
+        <div class="sub-main-body">
+            <div class="visual-container">
+                <div class="visual">
+                    <div class="vc visual-container-1">
+                        <div class="visual-title">
+                            <i class="fa fa-clipboard grey-i"></i><span class="v1-r">Ticket Status</span>
+                        </div>
+                        <div class="visual-graph">
+                            <div class="visual-graph-sub">
+                                <canvas id="ticketsChart" width="100" height="100"></canvas>
+                            </div>
+                        </div><br/>
+                    </div>
+                    <div class="vc visual-container-2">
+                        <div class="visual-title no-center">
+                            <i class="far fa-map grey-i"></i><span class="v1-r">Tickets Created</span>
+                        </div>
+                        <div class="visual-graph">
+                            <div class="visual-graph-sub up">
+                                <canvas id="createdChart" width="100" height="35"></canvas>
+                            </div>
+                        </div>
+                        
+                    </div> 
+                </div>
+            </div>
+            <div class="no-data-td dpn">
+                <div class="nd">
+                    <img src="../img/nodata.svg" width="400">
+                    <div class="nd-title">
+                        Looks like we couldn't find anything.
+                    </div>
+                    <div class="nd-cta">
+                        Create a ticket
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="createTicketModal" tabindex="-1" role="dialog" aria-labelledby="createTicketModalTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Create a new ticket</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form__group">
+                        <label class="form__label" for="summary">Summary<span class="required">*</span></label>
+                        <input class="form__input" id="summary" placeholder="e.g. unhandled error when logging out" required>
+                    </div>
+                    <div class="form__group">
+                        <label class="form__label" for="description">Description</label>
+                        <textarea class="textarea" id="description"></textarea>
+                    </div>
+                    <div class="form__group">
+                        <label class="form__label">Urgency<span class="required">*</span></label><br/>
+                        <div class="option-wrap">
+                            <div class="urgency-flex">
+                                <div class="urgency-text critical"><i class="fas fa-angle-double-up"></i>&nbsp;&nbsp;Critical</div>
+                                <div class="urgency-text high"><i class="fas fa-angle-up"></i>&nbsp;&nbsp;High</div>
+                                <div class="urgency-text medium ur-active"><i class="fas fa-equals"></i>&nbsp;&nbsp;Medium</div>
+                                <div class="urgency-text low"><i class="fas fa-minus"></i>&nbsp;&nbsp;Low</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form__group">
+                        <label class="form__label">Markers</label><br/>
+                        <div class="option-wrap">
+                            <div class="checkbox-separator">
+                                <input class="no-input-animation" type="checkbox" name="frontend-tag" id="frontend-tag" value="frontend"/>
+                                <label for="frontend-tag" class="tag"><div class="marker light-blue-marker">frontend</div></label>
+                            </div>
+                            <div class="checkbox-separator">
+                                <input class="no-input-animation" type="checkbox" name="backend-tag" id="backend-tag" value="backend"/>
+                                <label for="backend-tag" class="tag"><div class="marker backend-marker">backend</div></label>
+                            </div>
+                            <div class="checkbox-separator">
+                                <input class="no-input-animation" type="checkbox" name="js-tag" id="js-tag" value="js"/>
+                                <label for="js-tag" class="tag"><div class="marker rich-yellow-marker">js</div></label>
+                            </div>
+                            <div class="checkbox-separator">
+                                <input class="no-input-animation" type="checkbox" name="html-tag" id="html-tag" value="html"/>
+                                <label for="html-tag" class="tag"><div class="marker html-marker">html</div></label>
+                            </div>
+                            <div class="checkbox-separator">
+                                <input class="no-input-animation" type="checkbox" name="css-tag" id="css-tag" value="css"/>
+                                <label for="css-tag" class="tag"><div class="marker css-marker">css</div></label>
+                            </div>
+                            <div class="checkbox-separator">
+                                <input class="no-input-animation" type="checkbox" name="error-tag" id="error-tag" value="error"/>
+                                <label for="error-tag" class="tag"><div class="marker error-marker">error handling</div></label>
+                            </div>
+                        </div>
+                        <!-- <input class="no-input-animation" type="checkbox" name="backend-tag" id="backend-tag" value="backend"/>b
+                        <input class="no-input-animation" type="checkbox" name="js-tag" id="js-tag" value="js"/>Js -->
+                    </div>
+                </form>
+            </div>
+
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Open ticket</button>
+            </div>
+        </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="markersModal" tabindex="-1" role="dialog" aria-labelledby="markersModal" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle"><i class="fas fa-poll-h fa-fw"></i>&nbsp;Markers</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+               <div class="option-wrap">
+                    <span class="remove">&times;</span><div class="marker light-blue-marker">frontend</div><br/>
+                    <span class="remove">&times;</span><div class="marker backend-marker">backend</div><br/>
+                    <span class="remove">&times;</span><div class="marker rich-yellow-marker">js</div><br/>
+                    <span class="remove">&times;</span><div class="marker html-marker">html</div><br/>
+                    <span class="remove">&times;</span><div class="marker css-marker">css</div><br/>
+                    <span class="remove">&times;</span><div class="marker error-marker">error handling</div><br/>
+                </div>
+                <hr/>
+                <label for="markerColor" class="markerColor" class="modal-title">Create Marker</h5><br/>
+                    
+                    <input id="markerPreviewInput" class="form__input w60 mt-0" type="text" required>
+                <div class="flex-mid marker-options">
+                    <input type="color" name="markerColor" id="markerColor" value="#f2f2f2">
+                    <div class="option-wrap-round">
+                        <label class="switch" onclick="setPreviewColour()">
+                            <input type="checkbox">
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+                    <div id="marker-preview" class="marker fright">preview</div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+        </div>
+    </div>
+    <div class="modal fade" id="cardModal" tabindex="-1" role="dialog" aria-labelledby="cardModal" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle" spellcheck="false" contenteditable="true">mobile responsive navbar does not work</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+               <div class="option-wrap">
+                    <span class="remove">&times;</span><div class="marker light-blue-marker">frontend</div><br/>
+                    <span class="remove">&times;</span><div class="marker backend-marker">backend</div><br/>
+                    <span class="remove">&times;</span><div class="marker rich-yellow-marker">js</div><br/>
+                    <span class="remove">&times;</span><div class="marker html-marker">html</div><br/>
+                    <span class="remove">&times;</span><div class="marker css-marker">css</div><br/>
+                    <span class="remove">&times;</span><div class="marker error-marker">error handling</div><br/>
+                </div>
+                <hr/>
+                <label for="cardUrgency" class="modal-title form__label">Urgency</h5>&nbsp;
+                    <select name="cardUrgency" id="cardUrgency" class="select critical">
+                        <option value="critical">Critical</option>
+                        <option value="high">High</option>
+                        <option value="medium">Medium</option>
+                        <option value="low">Low</option>
+                    </select>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+        </div>
+    </div>
+    </body>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" type="text/javascript"></script>
+<script src="../js/visual.js"></script>
+<script src="../js/response.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</html>

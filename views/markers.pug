@@ -1,0 +1,197 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  link(rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css' integrity='sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm' crossorigin='anonymous')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  script(src='https://cdn.jsdelivr.net/npm/chart.js@2.8.0')
+  link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.css')
+  script(src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.bundle.js')
+  link(rel='shortcut icon' type='image/png' href='img/favicon.png')
+  link(rel='stylesheet' href='../css/main.css')
+  script(src="https://cdn.jsdelivr.net/npm/@jaames/iro@5")
+  title Markers | #{project.name}
+  link(rel="stylesheet", href="css/fa.css")
+  script.
+    const mode = localStorage.getItem('mode');
+
+    if(mode === "Dark"){
+      document.documentElement.setAttribute('data-theme', 'dark');
+    } else {
+      document.documentElement.setAttribute('data-theme', 'light');
+    }
+    
+.control-menu
+  img.control-logo(src='../img/grey-icon.png' alt='Vulture Grey Icon')
+  .control-top
+    div
+      a(href="/projects")
+        i.fa.fa-bookmark
+  .control-bottom
+    div
+      a(href="/account")
+        i.fa.fa-cog
+.subset-menu
+  .subset-proj-header
+    .proj-img
+    .proj-text
+      .proj-text--title #{project.name}
+      .proj-text--subtitle #{project.type}
+    .proj-arrow
+      .fas.fa-chevron-down
+  hr.subset
+  .below-sb-hr
+    .proj-dropdown
+      for proj in uprojects
+        if proj.code != user.groupcode
+          .proj-item
+            .proj-img(style="background-image: url('../img/project2.png')")
+            .proj-text
+              .proj-text--title= proj.name
+              .proj-text--subtitle= proj.type
+              .proj-text--code= proj.code
+    .subset-list
+      a.subset-item(href="/overview")
+        i.fa.fa-columns.fa-fw
+        span.subset-item-text Board
+      a.subset-item(href="/visual")
+        i.fas.fa-chart-bar.fa-fw  
+        span.subset-item-text Visual
+      .subset-item.subset-active
+        i.fas.fa-poll-h.fa-fw
+        span.subset-item-text Markers
+      if user.role === 'Admin' || user.role === 'Manager'
+        hr
+        a.subset-item(href="/members")
+          i.fas.fa-users.fa-fw
+          span.subset-item-text Members
+        a.subset-item(href="/settings")
+          i.fa.fa-cog.fa-fw
+          span.subset-item-text Settings
+      hr
+      .subset-item#logout
+        i.fa.fa-arrow-to-left.fa-fw
+        span.subset-item-text Log Out
+  .subset-profile
+    .sp-left
+      .sp-picture
+    .sp-right
+      .sp-name
+        | #{user.name}
+      - roleClass = 'role-text role-'+user.role
+      .sp-role(class=roleClass)
+        | #{user.role}
+.main-body
+  .board-header
+    .board-title
+      i.fad.fa-poll-h.fa-fw.grey-i.grey-p10
+      |  Markers
+      span.groupcode
+        span.code
+          span.grey-code Project Code
+          | #{project.code}
+  .sub-main-body
+    .markers-grid
+        .markers-container
+            .mcc-title
+                .far.fa-stream.grey-i
+                | &nbsp;&nbsp;Project Markers
+            br
+            .edit-marker-col
+              .marker-wrap.marker-mmm
+                for tag in project.tags
+                    .mm-m-wrap.m-hover(onClick=`setEdit('${tag.colour}', '${tag.text}'); rightCreate();`)
+                        .marker.m-no-r(style=`background-color: rgba(${tag.colour},0.2);color: rgb(${tag.colour})` id=`${tag.text}`)
+                            .marker-circle(style=`background-color: rgb(${tag.colour})`)
+                            .marker-content.tag-label-content= tag.text
+        .markers-edit-container
+          .mec-placeholder Select a marker above to edit.
+          .mec-buttons.dpn
+            button.btn.btn-primary.m-r-20(onClick="rightEdit();") Edit
+            button.btn.btn-danger.del-marker Delete
+        .markers-create-container
+            .mcc-title
+                .far.fa-marker.grey-i
+                span.mcc-t &nbsp;&nbsp;Create Marker
+            br
+            form.form--newMarker
+                .marker-options
+                    .marker-options-left
+                        input#markerPreviewInput.form__input.mt-0.ipt-m(autocomplete="off" type='text' required maxlength="22" placeholder="Preview")
+                        br
+                        .mol-container
+                          #marker-colour
+                    .marker-options-right
+                        .panel-item.sample-pi
+                          .panel-item-title Preview Card
+                          .panel-item-markers
+                              #marker-preview.marker.no-grow(style=`background-color: rgba(70, 73, 160, 0.2);color: rgb(70, 73, 160)`)
+                                #marker-preview-circle.marker-circle(style=`background-color: rgb(70, 73, 160)`)
+                                #marker-preview-content.marker-content Preview
+                              .marker.marker-additional +1
+                          .panel-item-urgency
+                            .urgency(class="critical")
+                          .panel-flag
+                            .flag.fad.fa-bullhorn(data-toggle="tooltip" data-html="true" data-placement="bottom" title="<b>Global</b>")
+                .modal-footer.btm-0
+                    button.btn.btn-primary.cf-btn(type='submit') Create Marker
+script(src='http://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js' type='text/javascript')
+script(src='js/bundle.js')
+script(src='js/response.js')
+script(src='https://code.jquery.com/jquery-3.2.1.slim.min.js' integrity='sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN' crossorigin='anonymous')
+script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js' integrity='sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q' crossorigin='anonymous')
+script(src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js' integrity='sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl' crossorigin='anonymous')
+script.
+  $(document).ready(function() {
+    $("body").tooltip({ selector: '[data-toggle=tooltip]' });
+  });
+
+
+  const e = document.querySelector('.mec-placeholder')
+  const b = document.querySelector('.mec-buttons');
+
+  const mi = document.getElementById('markerPreviewInput');
+  const pim = document.querySelector('.panel-item-markers');
+  const rpT = document.querySelector('.mcc-t');
+  const cfb = document.querySelector('.cf-btn');
+  
+  const rightEdit = () => {
+    const me = document.querySelector('.m-expand');
+    var cb = me.style.backgroundColor;
+    var cc = me.style.color;
+    const t = document.querySelector('.mcc-expand').textContent;
+    mi.value = t;
+    rpT.innerHTML = '&nbsp;&nbsp;Edit Marker';
+    cfb.textContent = 'Save Marker';
+    pim.innerHTML = `
+      <div class="marker no-grow" id="marker-preview" style='background-color: ${cb};color: ${cc}'>
+        <div class="marker-circle" id="marker-preview-circle" style='background-color: ${cc}'></div>
+        <div class="marker-content" id="marker-preview-content">${t}</div>
+      </div>
+      <div class="marker marker-additional">+1</div>
+      `;
+  }
+
+
+  const rightCreate = () => {
+    mi.value = '';
+    rpT.innerHTML = '&nbsp;&nbsp;Create Marker';
+    pim.innerHTML = `
+      <div class="marker no-grow" id="marker-preview" style='background-color: rgba(70, 73, 160, 0.2);color: rgb(70, 73, 160)'>
+        <div class="marker-circle" id="marker-preview-circle" style='background-color: rgb(70, 73, 160)'></div>
+        <div class="marker-content" id="marker-preview-content">Preview</div>
+      </div>
+      <div class="marker marker-additional">+1</div>
+    `;
+    cfb.textContent = 'Create Marker';
+  }
+  const setEdit = (c, t) => {
+    rightCreate();
+    var s=`
+    <div class="marker m-expand" style="background-color: rgba(${c}, 0.2); color: rgb(${c})" id='${t}'>
+      <div class="marker-circle mc-expand" style="background-color: rgb(${c});"></div>
+      <div class="marker-content mcc-expand tag-label-content"">${t}</div>
+    </div>
+    `
+    e.innerHTML = s;
+    b.style.display = 'block';
+  }
