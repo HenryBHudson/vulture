@@ -1,0 +1,34 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  link(href='https://fonts.googleapis.com/css?family=Rubik' rel='stylesheet')
+  link(rel='stylesheet' href='css/main.css')
+  title Vulture
+  link(rel="stylesheet", href="css/fa.css")
+.auth-bg
+.auth-wrap
+  .auth-bar
+  .auth-body
+    .auth-title
+      | What would you like to do?
+    a.auth-option(href="/join")
+      .ao-content
+        .ao-icon
+          i.fa.fa-arrow-right
+        .ao-title
+          | Join a Project
+        .ao-subtitle
+          | Have a join code? Use it here and get to work immediately.
+        .ao-btn
+    a.auth-option.ao-second(href="/create")
+      .ao-content
+        .ao-icon
+          i.fa.fa-plus
+        .ao-title
+          | Create a Project
+        .ao-subtitle
+          | Manage your own project and invite others to work with you.
+        .ao-btn
+script(src='js/response.js')
+script(src='js/bundle.js')

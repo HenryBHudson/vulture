@@ -1,0 +1,27 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  link(href='https://fonts.googleapis.com/css?family=Rubik' rel='stylesheet')
+  link(rel='stylesheet' href='css/main.css')
+  title Join Project | Vulture
+  script(src='https://kit.fontawesome.com/8ad34c9995.js' crossorigin='anonymous')
+  script(src="https://cdn.jsdelivr.net/npm/@jaames/iro@5")
+.auth-bg
+.auth-wrap
+  .auth-bar
+  .auth-body
+    .auth-title
+      | Join a Project
+    form.join-project
+      .form__group
+        label.form__label(for='code') Code
+        input#code.form__input(type='text' placeholder='12345678' minlength='8' required='')
+      .form__group.form__last
+        button.form__btn(type="submit") Join
+    .auth-alt
+      | Don't have a code? 
+      a.auth-alt-option(href="/action") Go Back
+    .auth-alt.aa-r#logout
+      .auth-alt-option Log Out
+script(src='js/bundle.js')

@@ -1,0 +1,64 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  link(href='https://fonts.googleapis.com/css?family=Rubik' rel='stylesheet')
+  link(rel='stylesheet' href='css/main.css')
+  title My Projects | Vulture
+  link(rel="stylesheet", href="css/fa.css")
+.auth-bg
+.auth-wrap
+  .auth-bar
+  .auth-body
+    .auth-title
+      span.fad.fa-bookmark.grey-i.dgrey-i
+      | Projects
+      a.auth-alt-option.aa-r.aa-t(href="/action") Add Project
+    .auth-w-c
+      .auth-projects
+        for proj in uprojects
+            .proj-item.auth-p
+              .proj-img(style="background-image: url('../img/project2.png')")
+              .proj-text
+                .proj-text--title= proj.name
+                .proj-text--subtitle= proj.type
+                .proj-text--code= proj.code
+              .proj-arrow.auth-p-arrow
+                .fas.fa-arrow-right
+    .auth-alt
+      a.auth-alt-option.edit-btn Edit
+    .auth-alt.aa-r#logout
+      .auth-alt-option Log Out
+script(src='js/bundle.js')
+script(src='https://code.jquery.com/jquery-3.2.1.slim.min.js' integrity='sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN' crossorigin='anonymous')
+script(src='js/response.js')
+script.
+  const e = document.querySelector('.edit-btn');
+  const ps = document.querySelectorAll('.proj-arrow');
+  const pi = document.querySelectorAll('.proj-item');
+
+  e.addEventListener('click', () => {
+    pi.forEach(p => {
+      p.addEventListener('click', () => {
+        if(p.classList.contains('proj-item')){
+          setTimeout(() => {
+            window.location = '/overview';
+          }, 50);
+        }
+      })
+      p.classList.toggle('proj-item');
+      p.classList.toggle('proj-item-edit');
+    })
+    ps.forEach(p => {
+      let pr = p.childNodes[0];
+      if(pr.classList.contains('fas')){
+        e.textContent = 'Done';
+      } else {
+        e.textContent = 'Edit';
+      }
+      pr.classList.toggle('fas');
+      pr.classList.toggle('fa-arrow-right');
+      pr.classList.toggle('fad');
+      pr.classList.toggle('fa-backspace');
+    })
+  })
