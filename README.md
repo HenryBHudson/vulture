@@ -19,12 +19,6 @@
 + Added Dark Mode
 ```
 
-**Estimated Release Date:**
-
-⚠ **Project Delayed**
-
-April 2020
-
 ## What is it?
 Vulture is a project management tool focused on development teams. It includes a simple to use kanban board along with a page to view project statistics on graphs. Management sections for users with access roles of Admin or above are available to use to manage members and update project settings.
 
