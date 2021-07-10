@@ -2,21 +2,21 @@
 
 **Completion Status:** 
 
-▸ Final Additions
+▸ Deployment
 
-![86%](https://progress-bar.dev/86) 
+![92%](https://progress-bar.dev/86) 
 
 **Recent Activity**
 
 ```diff
 # In Progress
+! Deployment
+
+# June
 ! Chat System
 
 # May
 + Added Flags
-
-# April
-+ Added Dark Mode
 ```
 
 ## What is it?
