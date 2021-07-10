@@ -57,4 +57,3 @@ You may not, if you want to use my work, edit any code.
 
 [Vulture Images](https://imgur.com/a/7tHxbyK)
 
-
