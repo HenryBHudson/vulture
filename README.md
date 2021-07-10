@@ -13,7 +13,7 @@
 ! Deployment
 
 # June
-! Chat System
++ Chat System
 
 # May
 + Added Flags
