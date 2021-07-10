@@ -4,7 +4,7 @@
 
 ▸ Deployment
 
-![92%](https://progress-bar.dev/86) 
+![92%](https://progress-bar.dev/92) 
 
 **Recent Activity**
 
