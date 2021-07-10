@@ -59,4 +59,6 @@ You may not, if you want to use my work, edit any code.
 ![Vulture Visual Page](https://ibb.co/k10b3Fd)
 ![Vulture Chat Page](https://ibb.co/cXd8Lbp)
 
+![Vulture Chat Page](https://imgur.com/a/7tHxbyK)
+
 
